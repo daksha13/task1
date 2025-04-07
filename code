@@ -1,0 +1,39 @@
+# data cleaning and preprocessing
+import pandas as pd
+data = pd.read_csv("D:/Folder/Data Analysis/datasets/netflix_titles.csv")
+
+# Code to print the original data
+print(data)
+
+# Code to identify how many null values does each column contain
+print(data.isnull().sum()) # to identify number of null values in each column
+
+# Code to replace null values with N/A
+print(data.replace(numpy.nan,"N/A"))
+
+# Code to remove duplicate rows
+print(data.drop_duplicates())
+
+# Code to standardize text values
+country_uppercase = data['country'].str.upper()
+print(country_uppercase)
+
+# Code to convert date formats to a consistent type
+data['date_added'] = pd.to_datetime(df['date_added'], errors = 'coerce')
+data['date_added'] = data['date_added'].dt.strftime('%d-%m-%Y')
+print(data)
+
+# Code to rename column headers to be clean and uniform
+data.columns = (data.columns
+                .str.strip()
+                .str.lower()
+                .str.replace(" ", "_")
+                .str.replace("[^0=9a-zA-Z_]", " ", regex=True)
+               )
+print(data)
+
+# Code to check and fix data types ('date_added' column converted from object to datetime)
+print(data.dtypes)
+data['date_added'] = pd.to_datetime(data['date_added'], errors='coerce')
+print(data.dtypes)
+print(data)
